@@ -1,5 +1,5 @@
 import { useRef, useEffect, useState } from "react";
-import { AndroidPhone } from "~/components/ui/android";
+import { Phone } from "~/components/ui/phone";
 import { TweetCard } from "./tweet-card";
 
 const tweetTexts = [
@@ -45,7 +45,6 @@ interface TweetData {
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
   const [tweets, setTweets] = useState<TweetData[]>([]);
   const [target, setTarget] = useState({ x: 0, y: 0 });
 
@@ -53,9 +52,7 @@ export function Hero() {
     function init() {
       const w = window.innerWidth;
       const h = window.innerHeight;
-      const mobile = window.matchMedia("(max-width: 768px)").matches;
-      setIsMobile(mobile);
-      const count = mobile ? 3 : 6;
+      const count = window.matchMedia("(max-width: 768px)").matches ? 3 : 6;
       setTweets(
         tweetLayout.slice(0, count).map((t, i) => ({
           id: `tweet-${i}`,
@@ -97,18 +94,16 @@ export function Hero() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const phoneWidth = isMobile ? 200 : 280;
-
   return (
     <section
       ref={sectionRef}
       className="relative h-[200vh] bg-[var(--color-hero-bg)] overflow-x-hidden"
     >
-      <div className="sticky top-0 h-screen overflow-hidden">
+      <div className="sticky top-0 h-screen mx-1.5">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,215,0,0.15)_0%,transparent_70%)]" />
 
-        <div className="absolute inset-0 flex flex-col gap-28 items-center justify-between px-6 py-16">
-          <div className="flex flex-col items-center text-center max-w-lg mt-8">
+        <div className="absolute inset-0 flex flex-col items-center px-6 py-16">
+          <div className="flex flex-col items-center text-center max-w-lg mt-[15vh] shrink-0">
             <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight">
               Find Passengers,
               <br />
@@ -136,11 +131,12 @@ export function Hero() {
             </div>
           </div>
 
-          <div className="flex mb-2 justify-center items-center">
-            <AndroidPhone />
+          <div className="flex-1 flex items-center justify-center w-full">
+            <Phone
+              className="h-auto w-auto md:h-auto md:w-1/2"
+              src="/landingpage.jpg"
+            />
           </div>
-
-          <div />
         </div>
 
         <div className="absolute inset-0 pointer-events-none">
