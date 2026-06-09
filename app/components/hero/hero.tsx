@@ -97,12 +97,12 @@ export function Hero() {
   return (
     <section
       ref={sectionRef}
-      className="relative h-[200vh] bg-[var(--color-hero-bg)] overflow-x-hidden"
+      className="relative h-[154vh] bg-[var(--color-hero-bg)] overflow-x-hidden"
     >
       <div className="sticky top-0 h-screen mx-1.5">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,215,0,0.15)_0%,transparent_70%)]" />
 
-        <div className="absolute inset-0 flex flex-col items-center px-6 py-16">
+        <div className="absolute inset-0 flex gap-8 flex-col items-center px-6 py-16">
           <div className="flex flex-col items-center text-center max-w-lg mt-[15vh] shrink-0">
             <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight">
               Find Passengers,
@@ -132,10 +132,9 @@ export function Hero() {
           </div>
 
           <div className="flex-1 flex items-center justify-center w-full">
-            <Phone
-              className="h-auto w-auto md:h-auto md:w-1/2"
-              src="/landingpage.jpg"
-            />
+            <div className="w-full max-w-[340px]">
+              <Phone src="/landingpage.jpg" />
+            </div>
           </div>
         </div>
 

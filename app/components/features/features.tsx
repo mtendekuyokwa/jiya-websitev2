@@ -8,7 +8,7 @@ const features = [
     description:
       "Search for rides by city or location. Find carpool partners heading your way with ease.",
     image: "/search-ride.jpg",
-    stat: "Available in 15+ cities",
+    stat: "Available in 28 districts",
   },
   {
     title: "Book & Ride",
@@ -18,14 +18,7 @@ const features = [
     image: "/bookride.jpg",
     stat: "Avg. 30s to book",
   },
-  {
-    title: "Post a Ride",
-    subtitle: "Offer seats",
-    description:
-      "List your ride in minutes. Set your route, schedule, available seats, and price.",
-    image: "/more-edit-ride.jpg",
-    stat: "Set your own price",
-  },
+  ,
   {
     title: "Manage as Driver",
     subtitle: "Your offers",
@@ -83,10 +76,7 @@ function FeatureRow({
   const isEven = index % 2 === 0;
 
   return (
-    <div
-      ref={ref}
-      className="min-h-screen flex items-center px-6 md:px-16"
-    >
+    <div ref={ref} className="min-h-screen flex items-center px-6 md:px-16">
       <div
         className={`w-full flex flex-col ${isEven ? "md:flex-row" : "md:flex-row-reverse"} items-center gap-8 md:gap-16 max-w-6xl mx-auto transition-all duration-700 ease-out`}
         style={{
