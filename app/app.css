@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+@theme {
+  --animate-marquee: marquee 30s linear infinite;
+}
+
 :root {
   --color-hero-bg: #0A0A0A;
   --color-glow: rgba(255, 215, 0, 0.15);
@@ -15,4 +19,9 @@
 @keyframes pulse {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.05); }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }

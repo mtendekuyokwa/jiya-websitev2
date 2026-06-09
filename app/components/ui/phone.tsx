@@ -1,3 +1,4 @@
+import { useId } from "react";
 import type { SVGProps } from "react";
 
 export interface PhoneProps extends SVGProps<SVGSVGElement> {
@@ -14,6 +15,7 @@ export function Phone({
 }: PhoneProps) {
   const baseClass = width ? undefined : "w-full h-auto";
   const combined = [baseClass, className].filter(Boolean).join(" ");
+  const clipId = useId();
 
   return (
     <svg
@@ -25,7 +27,7 @@ export function Phone({
       {...props}
     >
       <defs>
-        <clipPath id="phone-screen">
+        <clipPath id={clipId}>
           <rect x="16" y="16" width="380" height="828" rx="32" />
         </clipPath>
       </defs>
@@ -54,7 +56,7 @@ export function Phone({
           width="380"
           height="828"
           preserveAspectRatio="xMidYMid slice"
-          clipPath="url(#phone-screen)"
+          clipPath={`url(#${clipId})`}
         />
       )}
 
