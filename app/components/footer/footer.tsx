@@ -21,7 +21,15 @@ export function Footer() {
           <div>
             <h4 className="text-sm font-semibold text-white mb-4">Company</h4>
             <ul className="space-y-3">
-              {["About", "Blog", "Careers", "Press"].map((item) => (
+              <li>
+                <a
+                  href="/about"
+                  className="text-sm text-gray-500 hover:text-yellow-400 transition-colors"
+                >
+                  About
+                </a>
+              </li>
+              {["Blog", "Careers", "Press"].map((item) => (
                 <li key={item}>
                   <a
                     href="#"
@@ -53,16 +61,22 @@ export function Footer() {
           <div>
             <h4 className="text-sm font-semibold text-white mb-4">Support</h4>
             <ul className="space-y-3">
-              {["Help Center", "Contact Us"].map((item) => (
-                <li key={item}>
-                  <a
-                    href="#"
-                    className="text-sm text-gray-500 hover:text-yellow-400 transition-colors"
-                  >
-                    {item}
-                  </a>
-                </li>
-              ))}
+              <li>
+                <a
+                  href="#"
+                  className="text-sm text-gray-500 hover:text-yellow-400 transition-colors"
+                >
+                  Help Center
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/contact"
+                  className="text-sm text-gray-500 hover:text-yellow-400 transition-colors"
+                >
+                  Contact Us
+                </a>
+              </li>
               <li>
                 <a
                   href="/terms"

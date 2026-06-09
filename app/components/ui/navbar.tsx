@@ -5,17 +5,23 @@ export const Navbar = () => {
         <img src="/logo-dark.svg" alt="Logo" className="h-8 w-auto" />
       </div>
       <nav className="flex items-center space-x-6">
-        <a href="/" className="text-sm text-white/80 hover:text-white transition-colors">
+        <a
+          href="/"
+          className="text-sm text-white/80 hover:text-white transition-colors"
+        >
           Home
         </a>
-        <a href="/about" className="text-sm text-white/80 hover:text-white transition-colors">
+        <a
+          href="/about"
+          className="text-sm text-white/80 hover:text-white transition-colors"
+        >
           About
         </a>
-        <a href="/contact" className="text-sm text-white/80 hover:text-white transition-colors">
+        <a
+          href="/contact"
+          className="text-sm text-white/80 hover:text-white transition-colors"
+        >
           Contact
-        </a>
-        <a href="/blog" className="text-sm text-white/80 hover:text-white transition-colors">
-          Blog
         </a>
       </nav>
     </div>
