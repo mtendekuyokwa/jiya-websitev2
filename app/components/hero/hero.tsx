@@ -1,6 +1,7 @@
 import { useRef, useEffect, useState } from "react";
 import { Phone } from "~/components/ui/phone";
 import { TweetCard } from "./tweet-card";
+import { FeaturedOn } from "~/components/ui/featured-on";
 
 const tweetTexts = [
   "Saved ₹800 this week alone using Jiya 🚗",
@@ -79,8 +80,10 @@ export function Hero() {
     const el = sectionRef.current;
     if (!el) return;
 
+    const elRef = el;
+
     function onScroll() {
-      const rect = el.getBoundingClientRect();
+      const rect = elRef.getBoundingClientRect();
       const viewportH = window.innerHeight;
       const total = rect.height - viewportH;
       const scrolled = -rect.top;
@@ -97,33 +100,33 @@ export function Hero() {
   return (
     <section
       ref={sectionRef}
-      className="relative h-[154vh] bg-[var(--color-hero-bg)] overflow-x-hidden"
+      className="relative h-[154vh] bg-[var(--color-hero-bg)] overflow-hidden"
     >
       <div className="sticky top-0 h-screen mx-1.5">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,215,0,0.15)_0%,transparent_70%)]" />
 
-        <div className="absolute inset-0 flex gap-8 flex-col items-center px-6 py-16">
-          <div className="flex flex-col items-center text-center max-w-lg mt-[15vh] shrink-0">
-            <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight">
+        <div className="absolute inset-0 flex gap-6 sm:gap-8 flex-col items-center px-6 py-16">
+          <div className="flex flex-col items-center text-center max-w-lg mt-[10vh] sm:mt-[15vh] shrink-0">
+            <h1 className="text-[clamp(1.75rem,6vw,3rem)] sm:text-4xl md:text-5xl font-bold text-white leading-tight">
               Find Passengers,
               <br />
               <span className="text-yellow-400">Find Rides.</span>
             </h1>
-            <p className="mt-4 text-base md:text-lg text-gray-400 max-w-md">
+            <p className="mt-4 text-sm sm:text-base md:text-lg text-gray-400 max-w-md">
               Save money, find reliable carpool partners, and reduce your carbon
               footprint
             </p>
             <div className="flex gap-3 mt-6">
               <a
                 href="#"
-                className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 transition-colors text-white text-sm font-medium"
+                className="flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 transition-colors text-white text-xs sm:text-sm font-medium"
               >
                 <GooglePlayIcon />
                 Google Play
               </a>
               <a
                 href="#"
-                className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 transition-colors text-white text-sm font-medium"
+                className="flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 transition-colors text-white text-xs sm:text-sm font-medium"
               >
                 <AppStoreIcon />
                 App Store
@@ -132,7 +135,7 @@ export function Hero() {
           </div>
 
           <div className="flex-1 flex items-center justify-center w-full">
-            <div className="w-full max-w-[340px]">
+            <div className="w-full max-w-[200px] sm:max-w-[340px]">
               <Phone src="/landingpage.jpg" />
             </div>
           </div>

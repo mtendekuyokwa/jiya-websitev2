@@ -49,7 +49,7 @@ export default function Contact() {
   if (status === "success") {
     return (
       <main className="bg-[var(--color-hero-bg)] min-h-screen">
-        <div className="mx-auto max-w-[680px] px-6 pt-32 pb-24 text-center">
+        <div className="mx-auto max-w-[680px] px-6 pt-24 sm:pt-32 pb-16 sm:pb-24 text-center">
           <div className="w-16 h-16 rounded-full bg-yellow-400/20 flex items-center justify-center mx-auto mb-6">
             <svg
               viewBox="0 0 24 24"
@@ -72,7 +72,7 @@ export default function Contact() {
 
   return (
     <main className="bg-[var(--color-hero-bg)] min-h-screen">
-      <div className="mx-auto max-w-[680px] px-6 pt-32 pb-24">
+      <div className="mx-auto max-w-[680px] px-6 pt-24 sm:pt-32 pb-16 sm:pb-24">
         <div className="mb-12">
           <p className="text-yellow-400 text-sm font-semibold tracking-widest uppercase mb-3">
             Contact

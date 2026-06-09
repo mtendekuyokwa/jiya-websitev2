@@ -14,7 +14,7 @@ export function meta({}: Route.MetaArgs) {
 export default function About() {
   return (
     <main className="bg-[var(--color-hero-bg)] min-h-screen">
-      <div className="mx-auto max-w-[680px] px-6 pt-32 pb-24">
+      <div className="mx-auto max-w-[680px] px-6 pt-24 sm:pt-32 pb-16 sm:pb-24">
         <div className="mb-12">
           <p className="text-yellow-400 text-sm font-semibold tracking-widest uppercase mb-3">
             About

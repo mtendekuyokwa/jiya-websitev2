@@ -63,7 +63,7 @@ export function TweetCard({
 
   return (
     <div
-      className="fixed left-0 top-8 w-64 bg-[var(--color-tweet-bg)] rounded-xl shadow-lg overflow-hidden pointer-events-none"
+      className="fixed left-0 top-8 w-48 sm:w-64 bg-[var(--color-tweet-bg)] rounded-xl shadow-lg overflow-hidden pointer-events-none"
       style={{
         transform: `translate(${currentX}px, ${currentY}px) rotate(${rotation}deg) scale(${scale})`,
         opacity,

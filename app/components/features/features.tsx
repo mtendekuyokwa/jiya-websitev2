@@ -18,7 +18,6 @@ const features = [
     image: "/bookride.jpg",
     stat: "Avg. 30s to book",
   },
-  ,
   {
     title: "Manage as Driver",
     subtitle: "Your offers",
@@ -76,9 +75,12 @@ function FeatureRow({
   const isEven = index % 2 === 0;
 
   return (
-    <div ref={ref} className="min-h-screen flex items-center px-6 md:px-16">
+    <div
+      ref={ref}
+      className="min-h-[60vh] sm:min-h-screen flex items-center px-6 md:px-16 py-12 sm:py-0"
+    >
       <div
-        className={`w-full flex flex-col ${isEven ? "md:flex-row" : "md:flex-row-reverse"} items-center gap-8 md:gap-16 max-w-6xl mx-auto transition-all duration-700 ease-out`}
+        className={`w-full flex flex-col ${isEven ? "md:flex-row" : "md:flex-row-reverse"} items-center gap-6 sm:gap-8 md:gap-16 max-w-6xl mx-auto transition-all duration-700 ease-out`}
         style={{
           opacity: visible ? 1 : 0,
           transform: visible
@@ -86,17 +88,17 @@ function FeatureRow({
             : `translateY(${isEven ? 40 : -40}px)`,
         }}
       >
-        <div className="w-48 sm:w-56 md:w-2/5 max-w-[280px] shrink-0">
+        <div className="w-full max-w-[200px] sm:max-w-[240px] md:w-2/5 md:max-w-[280px] shrink-0">
           <Phone src={feature.image} />
         </div>
         <div className="w-full md:w-3/5 max-w-lg">
           <span className="text-yellow-400 text-sm font-semibold tracking-widest uppercase">
             {feature.subtitle}
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 leading-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mt-2 leading-tight">
             {feature.title}
           </h2>
-          <p className="mt-4 text-gray-400 leading-relaxed">
+          <p className="mt-4 text-gray-400 leading-relaxed text-sm sm:text-base">
             {feature.description}
           </p>
           <div className="mt-6 flex items-center gap-2 text-sm text-gray-500">
