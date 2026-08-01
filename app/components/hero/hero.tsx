@@ -1,107 +1,8 @@
-import { useRef, useEffect, useState } from "react";
 import { Phone } from "~/components/ui/phone";
-import { TweetCard } from "./tweet-card";
-import { FeaturedOn } from "~/components/ui/featured-on";
-
-const tweetTexts = [
-  "Saved ₹800 this week alone using Jiya 🚗",
-  "Finally found a carpool buddy for my daily commute!",
-  "No more solo rides - Jiya made it easy to split costs",
-  "The app's matching algorithm is amazing! Found my ideal partner",
-  "Reduced my weekly transport budget by 50%",
-  "Love how Jiya handles all the payment splitting",
-];
-
-const avatars = [
-  "https://i.pravatar.cc/150?img=1",
-  "https://i.pravatar.cc/150?img=2",
-  "https://i.pravatar.cc/150?img=3",
-  "https://i.pravatar.cc/150?img=4",
-  "https://i.pravatar.cc/150?img=5",
-  "https://i.pravatar.cc/150?img=6",
-];
-
-const tweetLayout = [
-  { xFrac: 0.04, yFrac: 0.06, rotation: -10 },
-  { xFrac: 0.82, yFrac: 0.04, rotation: 8 },
-  { xFrac: 0.02, yFrac: 0.28, rotation: -6 },
-  { xFrac: 0.85, yFrac: 0.24, rotation: 12 },
-  { xFrac: 0.06, yFrac: 0.5, rotation: -14 },
-  { xFrac: 0.84, yFrac: 0.48, rotation: 7 },
-];
-
-interface TweetData {
-  id: string;
-  avatar: string;
-  username: string;
-  handle: string;
-  text: string;
-  likes: number;
-  retweets: number;
-  startX: number;
-  startY: number;
-  rotation: number;
-}
 
 export function Hero() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const [scrollProgress, setScrollProgress] = useState(0);
-  const [tweets, setTweets] = useState<TweetData[]>([]);
-  const [target, setTarget] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    function init() {
-      const w = window.innerWidth;
-      const h = window.innerHeight;
-      const count = window.matchMedia("(max-width: 768px)").matches ? 3 : 6;
-      setTweets(
-        tweetLayout.slice(0, count).map((t, i) => ({
-          id: `tweet-${i}`,
-          avatar: avatars[i % avatars.length],
-          username: `user${i + 1}`,
-          handle: `@user${i + 1}`,
-          text: tweetTexts[i % tweetTexts.length],
-          likes: Math.floor(Math.random() * 1000),
-          retweets: Math.floor(Math.random() * 500),
-          startX: t.xFrac * w,
-          startY: t.yFrac * h,
-          rotation: t.rotation,
-        })),
-      );
-      setTarget({ x: w / 2, y: h / 2 + 20 });
-    }
-
-    init();
-    window.addEventListener("resize", init);
-    return () => window.removeEventListener("resize", init);
-  }, []);
-
-  useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
-
-    const elRef = el;
-
-    function onScroll() {
-      const rect = elRef.getBoundingClientRect();
-      const viewportH = window.innerHeight;
-      const total = rect.height - viewportH;
-      const scrolled = -rect.top;
-      setScrollProgress(
-        Math.max(0, Math.min(1, scrolled / Math.max(1, total))),
-      );
-    }
-
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
   return (
-    <section
-      ref={sectionRef}
-      className="relative h-[154vh] bg-[var(--color-hero-bg)] overflow-hidden"
-    >
+    <section className="relative h-[154vh] bg-[var(--color-hero-bg)] overflow-hidden">
       <div className="sticky top-0 h-screen mx-1.5">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,215,0,0.15)_0%,transparent_70%)]" />
 
@@ -139,20 +40,6 @@ export function Hero() {
               <Phone src="/landingpage.jpg" />
             </div>
           </div>
-        </div>
-
-        <div className="absolute inset-0 pointer-events-none">
-          {target.x > 0 &&
-            tweets.map((tweet, i) => (
-              <TweetCard
-                key={tweet.id}
-                tweet={tweet}
-                scrollProgress={scrollProgress}
-                index={i}
-                targetX={target.x}
-                targetY={target.y + 8}
-              />
-            ))}
         </div>
       </div>
     </section>
