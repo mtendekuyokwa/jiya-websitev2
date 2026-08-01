@@ -1,5 +1,9 @@
 import { Phone } from "~/components/ui/phone";
 
+const PLAY_STORE_URL =
+  "https://play.google.com/store/apps/details?id=com.mtendekuyokwa.jiya&hl=en";
+const APP_STORE_URL = "/app-store";
+
 export function Hero() {
   return (
     <section className="relative h-[154vh] bg-[var(--color-hero-bg)] overflow-hidden">
@@ -19,14 +23,16 @@ export function Hero() {
             </p>
             <div className="flex gap-3 mt-6">
               <a
-                href="#"
+                href={PLAY_STORE_URL}
+                target="_blank"
+                rel="noreferrer"
                 className="flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 transition-colors text-white text-xs sm:text-sm font-medium"
               >
                 <GooglePlayIcon />
                 Google Play
               </a>
               <a
-                href="#"
+                href={APP_STORE_URL}
                 className="flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 transition-colors text-white text-xs sm:text-sm font-medium"
               >
                 <AppStoreIcon />

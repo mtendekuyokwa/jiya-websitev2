@@ -8,5 +8,6 @@ export default [
   route("api/data-deletion-request", "routes/api.data-deletion-request.ts"),
   route("about", "routes/about.tsx"),
   route("contact", "routes/contact.tsx"),
+  route("app-store", "routes/app-store.tsx"),
   route("api/contact", "routes/api.contact.ts"),
 ] satisfies RouteConfig;
