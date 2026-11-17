@@ -1,67 +1,62 @@
-import { useId } from "react";
-import type { SVGProps } from "react";
+type Screen = { screen: string; alt: string };
 
-export interface PhoneProps extends SVGProps<SVGSVGElement> {
-  width?: number;
-  src?: string;
-  className?: string;
-}
-
+/**
+ * A slim device frame around app screens from /public/screens.
+ * Shows the light or dark screenshot to match the site theme.
+ * Pass several `screens` with an `active` index to crossfade between them.
+ */
 export function Phone({
-  width,
-  src,
-  className,
-  ...props
-}: PhoneProps) {
-  const baseClass = width ? undefined : "w-full h-auto";
-  const combined = [baseClass, className].filter(Boolean).join(" ");
-  const clipId = useId();
+  screen,
+  alt,
+  screens,
+  active = 0,
+  className = "",
+  style,
+  loading = "lazy",
+}: {
+  screen?: string;
+  alt?: string;
+  screens?: Screen[];
+  active?: number;
+  className?: string;
+  style?: React.CSSProperties;
+  loading?: "lazy" | "eager";
+}) {
+  const list: Screen[] = screens ?? [{ screen: screen!, alt: alt! }];
 
   return (
-    <svg
-      viewBox="0 0 412 892"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={combined || undefined}
-      {...(width ? { width, height: Math.round(width / 412 * 892) } : {})}
-      {...props}
+    <div
+      className={`relative aspect-[390/844] rounded-[2.6rem] bg-[#151513] p-[7px] shadow-float ring-1 ring-black/10 dark:bg-[#34312d] dark:ring-white/10 ${className}`}
+      style={style}
     >
-      <defs>
-        <clipPath id={clipId}>
-          <rect x="16" y="16" width="380" height="828" rx="32" />
-        </clipPath>
-      </defs>
-
-      <path
-        d="M24 0H388C401.255 0 412 10.745 412 24V868C412 881.255 401.255 892 388 892H24C10.745 892 0 881.255 0 868V24C0 10.745 10.745 0 24 0Z"
-        className="fill-[#1a1a1a]"
-      />
-
-      <rect
-        x="16"
-        y="16"
-        width="380"
-        height="828"
-        rx="32"
-        className="fill-black"
-      />
-
-      <circle cx="206" cy="10" r="4" className="fill-[#333]" />
-
-      {src && (
-        <image
-          href={src}
-          x="16"
-          y="16"
-          width="380"
-          height="828"
-          preserveAspectRatio="xMidYMid slice"
-          clipPath={`url(#${clipId})`}
-        />
-      )}
-
-      <rect x="0" y="16" width="16" height="828" className="fill-[#1a1a1a]" />
-      <rect x="396" y="16" width="16" height="828" className="fill-[#1a1a1a]" />
-    </svg>
+      <div className="relative h-full w-full overflow-hidden rounded-[2.15rem] bg-sand">
+        {list.map((s, i) => (
+          <div
+            key={s.screen}
+            aria-hidden={i !== active}
+            className={`absolute inset-0 transition-[opacity,transform] duration-500 ease-[var(--ease-out-quint)] ${
+              i === active ? "opacity-100" : "scale-[0.985] opacity-0"
+            }`}
+          >
+            <img
+              src={`/screens/${s.screen}-light.webp`}
+              alt={i === active ? s.alt : ""}
+              loading={loading}
+              decoding="async"
+              className="only-light h-full w-full object-cover object-top"
+            />
+            <img
+              src={`/screens/${s.screen}-dark.webp`}
+              alt={i === active ? s.alt : ""}
+              loading={loading}
+              decoding="async"
+              className="only-dark h-full w-full object-cover object-top"
+            />
+          </div>
+        ))}
+      </div>
+      <span aria-hidden="true" className="absolute -left-[2px] top-[22%] h-10 w-[3px] rounded-l bg-[#151513] dark:bg-[#34312d]" />
+      <span aria-hidden="true" className="absolute -right-[2px] top-[28%] h-16 w-[3px] rounded-r bg-[#151513] dark:bg-[#34312d]" />
+    </div>
   );
 }

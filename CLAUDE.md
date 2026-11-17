@@ -7,7 +7,7 @@ Carpoolers looking to save money, who need reliable carpool partners to share ri
 Fun, playful, and social, aiming to evoke confidence and delight in users.
 
 ### Aesthetic Direction
-Organic visual direction, inspired by Uber, avoiding overly complex interfaces. Dark mode with a preference for yellow color.
+Organic visual direction, inspired by Uber, avoiding overly complex interfaces. Uses the mobile app's colour scheme (teal, amber, warm sand, near-black) in both light and dark mode.
 
 ### Design Principles
 1. **User-Centric**: Design with the user in mind, ensuring a seamless and enjoyable experience.

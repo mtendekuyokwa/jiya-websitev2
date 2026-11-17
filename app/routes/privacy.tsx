@@ -13,16 +13,13 @@ export function meta({}: Route.MetaArgs) {
 
 export default function Privacy() {
   return (
-    <main className="bg-[var(--color-hero-bg)] min-h-screen">
-      <div className="mx-auto max-w-[680px] px-6 pt-24 sm:pt-32 pb-16 sm:pb-24">
+    <main className="bg-page min-h-screen">
+      <div className="mx-auto max-w-[680px] px-6 pt-14 sm:pt-20 pb-16 sm:pb-24">
         <div className="mb-12">
-          <p className="text-yellow-400 text-sm font-semibold tracking-widest uppercase mb-3">
-            Legal
-          </p>
-          <h1 className="text-3xl md:text-4xl font-bold text-white">
-            Privacy Policy
+          <h1 className="t-hero text-ink">
+            Privacy policy
           </h1>
-          <p className="text-gray-500 text-sm mt-3">
+          <p className="text-muted text-sm mt-3">
             Last updated: April 26, 2026
           </p>
         </div>
@@ -190,7 +187,7 @@ export default function Privacy() {
               To exercise these rights, contact us at{" "}
               <a
                 href="mailto:privacy@jiya.mw"
-                className="text-yellow-400 hover:underline"
+                className="font-semibold text-teal underline decoration-1 underline-offset-4 hover:decoration-2"
               >
                 privacy@jiya.mw
               </a>
@@ -221,10 +218,10 @@ function Section({
 }) {
   return (
     <section>
-      <h2 className="text-xl md:text-2xl font-bold text-white mb-4">
+      <h2 className="text-xl md:text-2xl font-bold text-ink mb-4">
         {num}. {title}
       </h2>
-      <div className="text-gray-400 leading-relaxed space-y-4">{children}</div>
+      <div className="text-ink-2 leading-relaxed space-y-4">{children}</div>
     </section>
   );
 }

@@ -9,5 +9,8 @@ export default [
   route("about", "routes/about.tsx"),
   route("contact", "routes/contact.tsx"),
   route("app-store", "routes/app-store.tsx"),
+  route("careers", "routes/careers.tsx"),
+  route("blog", "routes/blog.tsx"),
+  route("blog/:slug", "routes/blog-post.tsx"),
   route("api/contact", "routes/api.contact.ts"),
 ] satisfies RouteConfig;

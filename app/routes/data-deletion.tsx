@@ -3,7 +3,7 @@ import type { Route } from "./+types/data-deletion";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "Data Deletion - Jiya" },
+    { title: "Export or delete your data - Jiya" },
     {
       name: "description",
       content: "Request to export or delete your data from Jiya.",
@@ -44,142 +44,112 @@ export default function DataDeletion() {
     }
   }
 
+  const field =
+    "w-full rounded-2xl border border-line-strong bg-surface px-4 text-[17px] text-ink placeholder:text-muted transition-colors hover:border-ink-2 focus:border-teal focus:outline-none focus-visible:outline-none focus:ring-2 focus:ring-teal/30";
+
+  const options = [
+    { value: "export", title: "Export my data", body: "Get a copy of your profile data: name, email and phone number." },
+    { value: "delete", title: "Delete my account", body: "Permanently delete your account and everything linked to it. This can’t be undone." },
+  ];
+
   if (status === "success") {
     return (
-      <main className="bg-[var(--color-hero-bg)] min-h-screen">
-        <div className="mx-auto max-w-[680px] px-6 pt-24 sm:pt-32 pb-16 sm:pb-24 text-center">
-          <div className="w-16 h-16 rounded-full bg-yellow-400/20 flex items-center justify-center mx-auto mb-6">
-            <svg
-              viewBox="0 0 24 24"
-              className="w-8 h-8 text-yellow-400 fill-current"
-            >
-              <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
-            </svg>
-          </div>
-          <h1 className="text-3xl font-bold text-white mb-4">
-            Request Submitted
-          </h1>
-          <p className="text-gray-400">
-            We have received your request and will process it within 30 days.
-            You will receive a confirmation at{" "}
-            <span className="text-yellow-400">{email}</span>.
+      <main className="px-5 pb-24 pt-14 sm:px-8 sm:pb-32 sm:pt-20">
+        <div role="status" className="mx-auto max-w-[40rem] rounded-[2rem] bg-sand p-8 sm:p-12">
+          <span className="grid h-12 w-12 place-items-center rounded-full bg-teal text-on-teal">
+            <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>
+          </span>
+          <h1 className="t-h2 mt-6">Request received</h1>
+          <p className="t-lead mt-4 text-ink-2">
+            We’ll process it within 30 days and send a confirmation to{" "}
+            <strong className="font-semibold text-ink">{email}</strong>.
           </p>
+          <a href="/" className="mt-8 inline-flex min-h-12 items-center rounded-full bg-teal px-6 font-semibold text-on-teal hover:bg-teal-hover">
+            Back to the home page
+          </a>
         </div>
       </main>
     );
   }
 
   return (
-    <main className="bg-[var(--color-hero-bg)] min-h-screen">
-      <div className="mx-auto max-w-[680px] px-6 pt-24 sm:pt-32 pb-16 sm:pb-24">
-        <div className="mb-12">
-          <p className="text-yellow-400 text-sm font-semibold tracking-widest uppercase mb-3">
-            Account
-          </p>
-          <h1 className="text-3xl md:text-4xl font-bold text-white">
-            Data Deletion
-          </h1>
-          <p className="text-gray-400 mt-4">
-            Under Google Play policy, you can request to export or delete your
-            data.
-          </p>
-        </div>
+    <main className="px-5 pb-24 pt-14 sm:px-8 sm:pb-32 sm:pt-20">
+      <div className="mx-auto max-w-[40rem]">
+        <h1 className="t-hero">Export or delete your data</h1>
+        <p className="t-lead mt-5 text-ink-2">
+          You can ask for a copy of your data, or for your account and its data to be
+          deleted. We handle every request within 30 days.
+        </p>
 
-        <form onSubmit={handleSubmit} className="space-y-8">
+        <form onSubmit={handleSubmit} className="mt-12 space-y-8">
           <fieldset>
-            <legend className="text-sm font-semibold text-white uppercase mb-4">
-              What would you like to do?
-            </legend>
+            <legend className="mb-3 font-semibold">What would you like to do?</legend>
             <div className="space-y-3">
-              <label className="flex items-center gap-4 p-4 border border-white/10 rounded-xl cursor-pointer hover:bg-white/5 transition-colors">
-                <input
-                  type="radio"
-                  name="requestType"
-                  value="export"
-                  required
-                  checked={requestType === "export"}
-                  onChange={(e) => setRequestType(e.target.value)}
-                  className="w-4 h-4 accent-yellow-400"
-                />
-                <div>
-                  <p className="text-sm font-semibold text-white uppercase">
-                    Export my data
-                  </p>
-                  <p className="text-sm text-gray-500 mt-1">
-                    Download a copy of my profile data (name, email, phone)
-                  </p>
-                </div>
-              </label>
-              <label className="flex items-center gap-4 p-4 border border-white/10 rounded-xl cursor-pointer hover:bg-white/5 transition-colors">
-                <input
-                  type="radio"
-                  name="requestType"
-                  value="delete"
-                  required
-                  checked={requestType === "delete"}
-                  onChange={(e) => setRequestType(e.target.value)}
-                  className="w-4 h-4 accent-yellow-400"
-                />
-                <div>
-                  <p className="text-sm font-semibold text-white uppercase">
-                    Delete my account
-                  </p>
-                  <p className="text-sm text-gray-500 mt-1">
-                    Permanently delete my account and all associated data
-                  </p>
-                </div>
-              </label>
+              {options.map((o) => (
+                <label
+                  key={o.value}
+                  className="flex cursor-pointer items-start gap-4 rounded-2xl border border-line-strong bg-surface p-5 transition-colors hover:border-ink-2 has-[:checked]:border-teal has-[:checked]:bg-teal-soft has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-teal"
+                >
+                  <input
+                    type="radio"
+                    name="requestType"
+                    value={o.value}
+                    required
+                    checked={requestType === o.value}
+                    onChange={(e) => setRequestType(e.target.value)}
+                    className="mt-1 h-5 w-5 shrink-0 accent-[var(--teal)]"
+                  />
+                  <span>
+                    <span className="block text-[17px] font-semibold">{o.title}</span>
+                    <span className="mt-1 block text-[15px] leading-relaxed text-ink-2">{o.body}</span>
+                  </span>
+                </label>
+              ))}
             </div>
           </fieldset>
 
           <div>
-            <label
-              htmlFor="email"
-              className="text-sm font-semibold text-white uppercase mb-2 block"
-            >
-              Email address
+            <label htmlFor="email" className="mb-2 block font-semibold">
+              Email on your Jiya account
             </label>
             <input
               type="email"
               id="email"
               required
+              autoComplete="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your registered email"
-              className="w-full h-11 px-4 rounded-xl border border-white/10 bg-transparent text-white placeholder:text-gray-600 focus:outline-none focus:border-yellow-400 text-sm"
+              placeholder="you@example.com"
+              className={`${field} h-14`}
             />
           </div>
 
           <div>
-            <label
-              htmlFor="reason"
-              className="text-sm font-semibold text-white uppercase mb-2 block"
-            >
-              Reason{" "}
-              <span className="text-sm font-normal normal-case text-gray-500">
-                (optional)
-              </span>
+            <label htmlFor="reason" className="mb-2 block font-semibold">
+              Reason <span className="font-normal text-ink-2">(optional)</span>
             </label>
             <textarea
               id="reason"
-              rows={3}
+              rows={4}
               value={reason}
               onChange={(e) => setReason(e.target.value)}
-              placeholder="Tell us why you're requesting this..."
-              className="w-full px-4 py-3 rounded-xl border border-white/10 bg-transparent text-white placeholder:text-gray-600 focus:outline-none focus:border-yellow-400 text-sm resize-none"
+              placeholder="Anything you’d like us to know"
+              className={`${field} resize-y py-4`}
             />
           </div>
 
           {status === "error" && (
-            <p className="text-red-400 text-sm">{errorMsg}</p>
+            <p role="alert" className="rounded-2xl bg-[#fdecea] px-4 py-3 font-medium text-[#7a1712] dark:bg-[#3a1311] dark:text-[#fecaca]">
+              We couldn’t send your request: {errorMsg}. Please try again, or email info@jiya.mw.
+            </p>
           )}
 
           <button
             type="submit"
             disabled={status === "submitting"}
-            className="w-full h-11 text-sm font-semibold uppercase px-6 rounded-xl border border-white/20 text-white hover:bg-white/10 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className="inline-flex min-h-14 w-full items-center justify-center rounded-full bg-teal px-8 text-lg font-semibold text-on-teal transition-[background-color,transform] hover:bg-teal-hover active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
           >
-            {status === "submitting" ? "Submitting..." : "Submit Request"}
+            {status === "submitting" ? "Sending…" : "Send request"}
           </button>
         </form>
       </div>
